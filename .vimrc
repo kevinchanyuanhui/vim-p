@@ -6,7 +6,7 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 
 " Any valid git URL is allowed
 " Plug 'https://github.com/junegunn/vim-github-dashboard.git'
@@ -17,14 +17,22 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 
 " 主题🎨
 Plug 'rakr/vim-one'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'joshdick/onedark.vim'
+" Plug 'altercation/vim-colors-solarized'
 
 " 状态栏
 Plug 'vim-airline/vim-airline'
+Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline-themes'
 
-" JS Theme
+" JS 
 " Plug 'morhetz/gruvbox'
+Plug 'leafgarland/typescript-vim'
+Plug 'marijnh/tern_for_vim'
+Plug 'pangloss/vim-javascript'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 " 代码对齐线
 Plug 'yggdroot/indentline'
@@ -40,6 +48,16 @@ Plug 'scrooloose/nerdcommenter'
 
 " 符号转换
 Plug 'tpope/vim-surround'
+
+" 双括号
+Plug 'jiangmiao/auto-pairs'
+
+" 对齐
+Plug 'godlygeek/tabular'
+
+" 提纲
+Plug 'majutsushi/tagbar'
+Plug 'ramitos/jsctags'
 
 " 搜索
 Plug 'kien/ctrlp.vim'
@@ -69,7 +87,7 @@ set smartindent                 " 智能缩进
 set incsearch                   " 开启实时搜索功能
 set ignorecase                  " 搜索时大小写不敏感
 set wildmenu                    " vim 自身命令行模式智能补全
-let mapleader=","
+
 
 " 代码折叠
 set nofoldenable
@@ -87,13 +105,22 @@ let Tlist_Use_Right_Window=1
 
 " ****** plugin set ******
 
+" tagbar
+let g:tagbar_width=35
+let g:tagbar_autofocus=1
+let g:tagbar_type_javascript = {
+      \ 'ctagsbin' : 'jsctags'
+      \ }
 
 " 主题设置
+let g:airline_powerline_fonts = 1
 set background=dark
 " set background=light
-colorscheme solarized
-" let g:airline_theme='one'
-" colorscheme one
+" colorscheme solarized
+colorscheme one
+let g:airline_theme='one'
+" colorscheme onedark
+" let g:airline_theme='onedark'
 " colorscheme gruvbox
 " set background=dark 
 
@@ -120,7 +147,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Open a NERDTree
-nmap <F5> :NERDTreeToggle<CR>
+
 
 "nerdtree git
 let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -176,6 +203,17 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:syntastic_check_on_wq = 0
 " let g:syntastic_javascript_checkers = ['eslint']
 
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
+let javascript_enable_domhtmlcss = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+
+augroup javascript_folding
+  au!
+  au FileType javascript setlocal foldmethod=syntax
+augroup END
+
 " youcompleteme 
 if !exists("g:ycm_semantic_triggers")
  let g:ycm_semantic_triggers = {}
@@ -196,3 +234,9 @@ let g:indentLine_color_term = 239 "对齐线颜色
 " nerdcommenter
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+
+" ****** 快捷键  ******
+
+let mapleader=","
+nmap <F5> :NERDTreeToggle<CR>
+nmap <F6> :TagbarToggle<CR>

@@ -26,7 +26,7 @@ ln -s ~/dev/my/vim-p/.vimrc ~/.vimrc
 - install plugin
 
 ```bash
-vim 
+vim
 :PlugInstall
 ```
 
@@ -35,15 +35,36 @@ vim
 ```bash
 brew install cmake
 cd ~/.vim/plugged/youcompleteme
-python3 install.py --ts-completer
+python3 install.py --ts-completer --tern-completer
 ```
+
 - ctags
 
 ```bash
 brew install ctags-exuberant
-cd ~/dev/my/xxx
-ctags -R
+# jsctags
+~/.vim/plugged/jsctags
+npm i
+ln -s ~/dev/my/vim-p/.tern-conf ~/.tern-conf
 ```
+
+## keymap
+
+- F5             :  toggle nerdtree
+
+- F6             :  toggle tagbar
+
+- Ctrl + p       :  search
+
+- , + p          :  prettier
+
+- Ctrl + ]       :  jump ctags
+
+- :Tabularize /= :  tab
+
+- cs"'           :  vim-surround
+
+- Ctrl + w + w   :  switch window
 
 ## extra info
 
@@ -52,3 +73,5 @@ ctags -R
 - [vim-plug](https://github.com/junegunn/vim-plug)
 
 - [vim-web](https://github.com/jaywcjlove/vim-web)
+
+- [vim-ide](https://www.jianshu.com/p/06ea892566e7)
