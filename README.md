@@ -45,7 +45,8 @@ brew install ctags-exuberant
 # jsctags
 ~/.vim/plugged/jsctags
 npm i
-ln -s ~/dev/my/vim-p/.tern-conf ~/.tern-conf
+npm link
+ln -s ~/dev/my/vim-p/.tern-config ~/.tern-config
 ```
 
 ## keymap
