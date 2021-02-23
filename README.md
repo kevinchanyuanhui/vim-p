@@ -30,6 +30,13 @@ vim
 :PlugInstall
 ```
 
+- install vim-prettier
+
+```bash
+cd  ~/.vim/plugged/vim-prettier
+npm i
+```
+
 - YCM install ts support
 
 ```bash
